@@ -1,29 +1,52 @@
-import React from "react";
-import { motion } from "framer-motion";
 import {
-  Mail,
-  MapPin,
-  Linkedin,
-  Github,
-  ShieldCheck,
-  Briefcase,
-  GraduationCap,
-  Award,
-  Users,
-  ChevronRight,
   Activity,
-  Radar,
-  Wallet,
-  Database,
-  ScanSearch,
+  Award,
+  BadgeCheck,
   BarChart3,
   Binary,
-  Landmark,
+  Briefcase,
+  ChevronRight,
   Cpu,
-  BadgeCheck,
+  Database,
+  Github,
+  GraduationCap,
+  Landmark,
+  Linkedin,
+  Mail,
+  MapPin,
+  Radar,
+  ScanSearch,
+  ShieldCheck,
+  Users,
+  Wallet,
 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
+import React from "react";
+import { motion } from "framer-motion";
+
+// Simple local UI components for plain Vite + React projects
+function Card({ children, className = "" }) {
+  return <div className={className}>{children}</div>;
+}
+
+function CardContent({ children, className = "" }) {
+  return <div className={className}>{children}</div>;
+}
+
+function Button({ asChild = false, children, className = "", ...props }) {
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children, {
+      ...props,
+      className: [className, children.props.className].filter(Boolean).join(" "),
+    });
+  }
+
+  return (
+    <button className={className} {...props}>
+      {children}
+    </button>
+  );
+}
 
 const experience = [
   {
@@ -239,11 +262,11 @@ export default function PortfolioWebsite() {
                 </Button>
               </div>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
                 <MetricCard icon={Radar} label="Security Ops" value="3+ Yrs" note="Detection, triage, investigation, and legally verifiable documentation (NC Notary Public)." />
                 <MetricCard icon={Wallet} label="FinTech Lens" value="Risk" note="Finance controls, compliance mindset, and regulatory awareness supported by NC Notary credential." />
                 <MetricCard icon={Cpu} label="Core Stack" value="SIEM" note="Sentinel, Defender, Netskope, ServiceNow with audit-ready documentation practices." />
-                <MetricCard icon={BarChart3} label="Data" value="Py / SQL" note="Reporting, analytics, dashboards, and verifiable documentation aligned with compliance." />
+                
               </div>
             </motion.div>
 
